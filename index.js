@@ -11,7 +11,7 @@ dotenv.config()
 
 app.use(express.json())
 app.use(cors({
-    origin: "assignment-8-abid-shaikh.netlify.app",
+    origin: "https://assignment-8-abid-shaikh.netlify.app/",
     method: ["GET","POST","PUT","DELETE"],
     credentials: true
 }));

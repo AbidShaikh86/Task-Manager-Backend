@@ -3,18 +3,14 @@ const dotenv = require('dotenv')
 const DBConnection = require('./DBConnection')
 const cors = require('cors')
 const taskSchema = require('./model/taskModel')
-const { getAllTasks, getTaskById, addNewTask, updateTaskById, deleteTaskById } = require('./controllers/task-controller')
+const { getAllTasks, getTaskById, addNewTask, updateTaskById, deleteTaskById, toggleComplete } = require('./controllers/task-controller')
 
 const app = express()
 
 dotenv.config()
 
 app.use(express.json())
-app.use(cors({
-    origin: "https://assignment-8-abid-shaikh.netlify.app",
-    method: ["GET","POST","PUT","DELETE"],
-    credentials: true
-}));
+app.use(cors());
 
 DBConnection();
 
@@ -27,6 +23,8 @@ app.get("/task",getAllTasks)
 app.get("/task/:id",getTaskById)
 
 app.post("/task",addNewTask)
+
+app.put("/task/:id", toggleComplete)
 
 app.put("/task/:id",updateTaskById)
 
